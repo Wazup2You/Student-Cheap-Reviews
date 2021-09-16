@@ -14,5 +14,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('reviews');
 });
+
+Route::get('reviews/{review}', function ($slug) {
+
+    $path = __DIR__ . "/../resources/reviews/{$slug}.html";
+
+//    ddd($path);
+
+    if (! file_exists($path)) {
+        return redirect('/');
+//        abort(404);
+    }
+
+    $review = file_get_contents($path); // $review
+
+    return view('review', [
+        'review' => $review
+    ]);
+})->where('review', '[A-z_\-]+');
