@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,23 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('reviews');
+    return view('reviews', [
+        'reviews' => \App\Models\Review::all()
+        ]);
 });
 
 Route::get('reviews/{review}', function ($slug) {
-
-    $path = __DIR__ . "/../resources/reviews/{$slug}.html";
-
-//    ddd($path);
-
-    if (! file_exists($path)) {
-        return redirect('/');
-//        abort(404);
-    }
-
-    $review = file_get_contents($path); // $review
-
     return view('review', [
-        'review' => $review
+        'review' => \App\Models\Review::find($slug)
     ]);
+////    ddd($path);
 })->where('review', '[A-z_\-]+');
