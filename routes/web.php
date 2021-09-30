@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 Route::get('reviews/{review}', function ($slug) {
     return view('review', [
-        'review' => \App\Models\Review::find($slug)
+        'review' => \App\Models\Review::findOrFail($slug)
     ]);
 ////    ddd($path);
-})->where('review', '[A-z_\-]+');
+});

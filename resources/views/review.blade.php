@@ -1,16 +1,13 @@
-<!doctype html>
+@extends('components.layout')
 
-<title>My Reviews</title>
-<link rel="stylesheet" href="/app.css">
+@section('content')
+    <article>
+        <h1>{{ $review->title }}</h1>
 
-<body>
-<article>
-<h1><?= $review->title; ?></h1>
+        <div>
+            {!! $review->body !!}
+        </div>
+    </article>
 
-    <div>
-        <?= $review->body; ?>
-    </div>
-</article>
-
-<a href="/">Go Back</a>
-</body>
+    <a href="/">Go Back</a>
+@endsection

@@ -29,35 +29,37 @@ class Review
 
     public static function all()
     {
-      return collect(File::files(resource_path("reviews")))
-            ->map(function ($file){
-                return \Spatie\YamlFrontMatter\YamlFrontMatter::parseFile($file);
-            })
-            ->map(function ($document){
-                return new \App\Models\Review(
-                    $document->title,
-                    $document->excerpt,
-                    $document->date,
-                    $document->body(),
-                    $document->slug
-                );
-            });
+        return cache()->rememberForever('reviews.all', function (){
+            return collect(File::files(resource_path("reviews")))
+                ->map(function ($file){
+                    return \Spatie\YamlFrontMatter\YamlFrontMatter::parseFile($file);
+                })
+                ->map(function ($document) {
+                    return new \App\Models\Review(
+                        $document->title,
+                        $document->excerpt,
+                        $document->date,
+                        $document->body(),
+                        $document->slug
+                    );
+                }) ->sortByDesc('date');
+        });
+
     }
 
     public static function find($slug)
     {
-        return static::all()->firstWhere('slug',$slug);
-//        base_path();
-//    if (! file_exists($path = resource_path("reviews/{$slug}.html"))) {
-//        throw new ModelNotFoundException();
-////        return redirect('/');
-////        abort(404);
-//    }
-//
-//    return cache()->remember("reviews.{$slug}", 1200, function () use ($path) {
-////        var_dump('file_get_contents');
-//        return file_get_contents($path); // $review
-//    });
+       return static::all()->firstWhere('slug', $slug);
+    }
 
+    public static function findOrFail($slug)
+    {
+        $review = static::find($slug);
+
+        if (!$review) {
+            throw new ModelNotFoundException();
+        }
+
+        return $review;
     }
 }
