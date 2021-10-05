@@ -1,6 +1,5 @@
-@extends('components.layout')
+<x-layout>
 
-@section('content')
     <article>
         <h1>{{ $review->title }}</h1>
 
@@ -10,4 +9,5 @@
     </article>
 
     <a href="/">Go Back</a>
-@endsection
+
+</x-layout>
