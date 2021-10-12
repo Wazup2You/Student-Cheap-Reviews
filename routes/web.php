@@ -15,14 +15,26 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    \Illuminate\Support\Facades\DB::listen(function ($query) {
+        logger($query->sql);
+    });
+
+
     return view('reviews', [
         'reviews' => \App\Models\Review::all()
         ]);
 });
 
-Route::get('reviews/{review}', function ($slug) {
+Route::get('reviews/{review:slug}', function (\App\Models\Review $review) { // Review::where('slug', $post)->firstOfFail()
     return view('review', [
-        'review' => \App\Models\Review::findOrFail($slug)
+        'review' => $review
+        //'review' => \App\Models\Review::findOrFail($id)
     ]);
 ////    ddd($path);
+});
+
+Route::get('categories/{category:slug}', function (\App\Models\Category $category) {
+    return view('reviews', [
+        'reviews' => $category->reviews
+    ]);
 });

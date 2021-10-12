@@ -3,9 +3,13 @@
             <article>
                 <h1>
                     <a href="/reviews/{{ $review->slug }}">
-                        {{ $review->title }}
+                        {!! $review->title !!}
                     </a>
                 </h1>
+
+                <p>
+                    <a href="/categories/{{ $review->category->slug }}">{{ $review->category->name }}</a>
+                </p>
 
                 <div>
                     {{ $review->excerpt }}
