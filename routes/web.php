@@ -15,13 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    \Illuminate\Support\Facades\DB::listen(function ($query) {
-        logger($query->sql);
-    });
-
+//    \Illuminate\Support\Facades\DB::listen(function ($query) {
+//        logger($query->sql, $query->bindings);
+//    });
 
     return view('reviews', [
-        'reviews' => \App\Models\Review::all()
+        'reviews' => \App\Models\Review::latest()->get()
         ]);
 });
 
@@ -36,5 +35,11 @@ Route::get('reviews/{review:slug}', function (\App\Models\Review $review) { // R
 Route::get('categories/{category:slug}', function (\App\Models\Category $category) {
     return view('reviews', [
         'reviews' => $category->reviews
+    ]);
+});
+
+Route::get('authors/{author:username}', function (\App\Models\User $author) {
+    return view('reviews', [
+        'reviews' => $author->reviews
     ]);
 });

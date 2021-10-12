@@ -8,7 +8,7 @@
                 </h1>
 
                 <p>
-                    <a href="/categories/{{ $review->category->slug }}">{{ $review->category->name }}</a>
+                    By <a href="/authors/{{ $review->author->username }}">{{ $review->author->name }}</a> in <a href="/categories/{{ $review->category->slug }}">{{ $review->category->name }}</a>
                 </p>
 
                 <div>
