@@ -28,10 +28,8 @@
                 </div>
             </header>
 
-            <div class="text-sm mt-2">
-                <p>
-                    {{ $review->excerpt }}
-                </p>
+            <div class="text-sm mt-2 space-y-4">
+                    {!! $review->excerpt !!}
             </div>
 
             <footer class="flex justify-between items-center mt-8">

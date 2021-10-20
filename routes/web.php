@@ -14,24 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-//    \Illuminate\Support\Facades\DB::listen(function ($query) {
-//        logger($query->sql, $query->bindings);
-//    });
-
-    return view('reviews', [
-        'reviews' => \App\Models\Review::latest()->get(),
-        'categories' => \App\Models\Category::all()
-        ]);
-})->name('home');
-
-Route::get('reviews/{review:slug}', function (\App\Models\Review $review) { // Review::where('slug', $post)->firstOfFail()
-    return view('review', [
-        'review' => $review
-        //'review' => \App\Models\Review::findOrFail($id)
-    ]);
-////    ddd($path);
-});
+Route::get('/', [\App\Http\Controllers\ReviewController::class, 'index'])->name('home');
+Route::get('reviews/{review:slug}', [\App\Http\Controllers\ReviewController::class, 'show']);
 
 Route::get('categories/{category:slug}', function (\App\Models\Category $category) {
     return view('reviews', [
