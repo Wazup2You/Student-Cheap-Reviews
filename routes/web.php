@@ -20,9 +20,10 @@ Route::get('/', function () {
 //    });
 
     return view('reviews', [
-        'reviews' => \App\Models\Review::latest()->get()
+        'reviews' => \App\Models\Review::latest()->get(),
+        'categories' => \App\Models\Category::all()
         ]);
-});
+})->name('home');
 
 Route::get('reviews/{review:slug}', function (\App\Models\Review $review) { // Review::where('slug', $post)->firstOfFail()
     return view('review', [
@@ -34,9 +35,11 @@ Route::get('reviews/{review:slug}', function (\App\Models\Review $review) { // R
 
 Route::get('categories/{category:slug}', function (\App\Models\Category $category) {
     return view('reviews', [
-        'reviews' => $category->reviews
+        'reviews' => $category->reviews,
+        'currentCategory' => $category,
+        'categories' => \App\Models\Category::all()
     ]);
-});
+})->name('category');
 
 Route::get('authors/{author:username}', function (\App\Models\User $author) {
     return view('reviews', [
