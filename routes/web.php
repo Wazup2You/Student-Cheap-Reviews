@@ -17,16 +17,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\ReviewController::class, 'index'])->name('home');
 Route::get('reviews/{review:slug}', [\App\Http\Controllers\ReviewController::class, 'show']);
 
-Route::get('categories/{category:slug}', function (\App\Models\Category $category) {
-    return view('reviews', [
-        'reviews' => $category->reviews,
-        'currentCategory' => $category,
-        'categories' => \App\Models\Category::all()
-    ]);
-})->name('category');
+//Route::get('categories/{category:slug}', function (\App\Models\Category $category) {
+//    return view('reviews', [
+//        'reviews' => $category->reviews,
+//        'currentCategory' => $category,
+//        'categories' => \App\Models\Category::all()
+//    ]);
+//})->name('category');
 
-Route::get('authors/{author:username}', function (\App\Models\User $author) {
-    return view('reviews', [
-        'reviews' => $author->reviews
-    ]);
-});
+//Route::get('authors/{author:username}', function (\App\Models\User $author) {
+//    return view('reviews.index', [
+//        'reviews' => $author->reviews
+//    ]);
+//});

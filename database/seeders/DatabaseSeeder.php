@@ -21,11 +21,11 @@ class DatabaseSeeder extends Seeder
 //        Category::truncate();
 
         $user = User::factory()->create([
-            'name' => 'John Doe'
+//            'name' => 'John Doe'
         ]);
 
         Review::factory(10)->create([
-            'user_id' => $user->id
+//            'user_id' => $user->id
         ]);
 //
 //        $user = User::factory()->create();

@@ -9,16 +9,14 @@ use Illuminate\Http\Request;
 class ReviewController extends Controller
 {
     public function index(){
-        return view('reviews', [
-            'reviews' => Review::latest()->filter(request(['search']))->get(),
-            'categories' => Category::all()
-        ]);
+        return view('reviews.index', [
+            'reviews' => Review::latest()->filter(request(['search', 'category', 'author']))->get()
+            ]);
     }
 
     public function show(Review $review){
-        return view('review', [
+        return view('reviews.show', [
             'review' => $review
-            //'review' => \App\Models\Review::findOrFail($id)
         ]);
     }
 }
