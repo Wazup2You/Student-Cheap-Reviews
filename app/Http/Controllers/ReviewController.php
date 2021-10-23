@@ -10,7 +10,9 @@ class ReviewController extends Controller
 {
     public function index(){
         return view('reviews.index', [
-            'reviews' => Review::latest()->filter(request(['search', 'category', 'author']))->get()
+            'reviews' => Review::latest()->filter(
+                request(['search', 'category', 'author'])
+            )->paginate(6)->withQueryString()
             ]);
     }
 

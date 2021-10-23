@@ -37,7 +37,7 @@
                         </a>
 
                         <div class="space-x-2">
-                            <x-category-button :category="$review->category" />
+                            <x-category-button :category="$review->category"/>
                         </div>
                     </div>
 
