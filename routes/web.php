@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\ReviewController::class, 'index'])->name('home');
 Route::get('reviews/{review:slug}', [\App\Http\Controllers\ReviewController::class, 'show']);
 
+Route::get('register', [\App\Http\Controllers\RegisterController::class, 'create']);
+Route::post('register', [\App\Http\Controllers\RegisterController::class, 'store']);
+
+
 //Route::get('categories/{category:slug}', function (\App\Models\Category $category) {
 //    return view('reviews', [
 //        'reviews' => $category->reviews,
