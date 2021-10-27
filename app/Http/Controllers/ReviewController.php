@@ -12,7 +12,7 @@ class ReviewController extends Controller
         return view('reviews.index', [
             'reviews' => Review::latest()->filter(
                 request(['search', 'category', 'author'])
-            )->paginate(6)->withQueryString()
+            )->paginate(18)->withQueryString()
             ]);
     }
 
@@ -21,4 +21,6 @@ class ReviewController extends Controller
             'review' => $review
         ]);
     }
+
+    // index, show, create, store, edit, update, destroy
 }

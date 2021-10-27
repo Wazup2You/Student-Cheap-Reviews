@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [\App\Http\Controllers\ReviewController::class, 'index'])->name('home');
+
 Route::get('reviews/{review:slug}', [\App\Http\Controllers\ReviewController::class, 'show']);
+Route::post('reviews/{review:slug}/comments', [\App\Http\Controllers\ReviewCommentsController::class, 'store']);
 
 Route::get('register', [\App\Http\Controllers\RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [\App\Http\Controllers\RegisterController::class, 'store'])->middleware('guest');
@@ -24,6 +26,7 @@ Route::get('login', [\App\Http\Controllers\SessionsController::class, 'create'])
 Route::post('login', [\App\Http\Controllers\SessionsController::class, 'store'])->middleware('guest');
 
 Route::post('logout', [\App\Http\Controllers\SessionsController::class, 'destroy'])->middleware('auth');
+
 
 //Route::get('categories/{category:slug}', function (\App\Models\Category $category) {
 //    return view('reviews', [

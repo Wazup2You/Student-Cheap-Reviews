@@ -49,8 +49,10 @@
                 </div>
 
                 <section class="col-span-8 col-start-5 mt-10 space-y-6">
+                    @include('reviews._add-comment-form')
+
                     @foreach($review->comments as $comment)
-                    <x-review-comment :comment="$comment" />
+                        <x-review-comment :comment="$comment" />
                     @endforeach
                 </section>
             </article>
