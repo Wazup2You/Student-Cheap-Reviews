@@ -17,6 +17,7 @@ class CreateReviewsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('category_id');
+//            $table->tinyInteger('status')->default(0);
             $table->string('slug')->unique();
             $table->string('title');
             $table->string('thumbnail')->nullable();

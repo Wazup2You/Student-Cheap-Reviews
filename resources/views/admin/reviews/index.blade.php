@@ -23,30 +23,19 @@
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap">
-{{--                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">--}}
-{{--                  Published--}}
-{{--                </span>--}}
-                                        <style>
-                                            /* CHECKBOX TOGGLE SWITCH */
-                                            /* @apply rules for documentation, these do not work as inline style */
-                                            .toggle-checkbox:checked {
-                                                @apply: right-0 border-green-400;
-                                                right: 0;
-                                                border-color: #68D391;
-                                            }
-                                            .toggle-checkbox:checked + .toggle-label {
-                                                @apply: bg-green-400;
-                                                background-color: #68D391;
-                                            }
-                                        </style>
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                  Published
+                </span>
+{{--                                        <a href="{{ route('reviewStatus' , ['id' => $review->id])  }}">--}}
+{{--                                            <button>--}}
+{{--                                                @if ($review->status == 1)--}}
+{{--                                                    Active--}}
+{{--                                                @else--}}
+{{--                                                    Inactive--}}
+{{--                                                @endif--}}
 
-                                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                                            <input type="checkbox" name="toggle" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
-                                            <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
-                                        </div>
-                                        <label for="toggle" class="text-xs text-gray-700">Show On Index</label>
-
-
+{{--                                            </button>--}}
+{{--                                        </a>--}}
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">

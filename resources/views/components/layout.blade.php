@@ -22,8 +22,11 @@
                         <button class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->name }}!</button>
                     </x-slot>
 
+                    @can('admin')
                     <x-dropdown-item href="/admin/reviews" :active="request()->is('admin/reviews')">Dashboard</x-dropdown-item>
                     <x-dropdown-item href="/admin/reviews/create" :active="request()->is('admin/reviews/create')">New Review</x-dropdown-item>
+                    @endcan
+
                     <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Log Out</x-dropdown-item>
 
                     <form id="logout-form" method="POST" action="/logout" class="hidden">
