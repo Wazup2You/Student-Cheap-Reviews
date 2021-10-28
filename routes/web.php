@@ -27,8 +27,17 @@ Route::post('login', [\App\Http\Controllers\SessionsController::class, 'store'])
 
 Route::post('logout', [\App\Http\Controllers\SessionsController::class, 'destroy'])->middleware('auth');
 
-Route::get('admin/reviews/create', [\App\Http\Controllers\ReviewController::class, 'create'])->middleware('admin');
-Route::post('admin/reviews', [\App\Http\Controllers\ReviewController::class, 'store'])->middleware('admin');
+// Admin
+Route::post('admin/reviews', [\App\Http\Controllers\AdminReviewController::class, 'store'])->middleware('admin');
+Route::get('admin/reviews/create', [\App\Http\Controllers\AdminReviewController::class, 'create'])->middleware('admin');
+
+Route::get('admin/reviews', [\App\Http\Controllers\AdminReviewController::class, 'index'])->middleware('admin');
+Route::get('admin/reviews/{review}/edit', [\App\Http\Controllers\AdminReviewController::class, 'edit'])->middleware('admin');
+
+Route::patch('admin/reviews/{review}', [\App\Http\Controllers\AdminReviewController::class, 'update'])->middleware('admin');
+Route::delete('admin/reviews/{review}', [\App\Http\Controllers\AdminReviewController::class, 'destroy'])->middleware('admin');
+
+
 
 //Route::get('categories/{category:slug}', function (\App\Models\Category $category) {
 //    return view('reviews', [

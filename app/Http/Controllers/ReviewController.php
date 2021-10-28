@@ -24,28 +24,4 @@ class ReviewController extends Controller
             'review' => $review
         ]);
     }
-
-    public function create()
-    {
-        return view('reviews.create');
-    }
-
-    public function store()
-    {
-        $attributes = request()->validate([
-            'title' => 'required',
-            'thumbnail' => 'required|image',
-            'slug' => ['required', Rule::unique('reviews', 'slug')],
-            'excerpt' => 'required',
-            'body' => 'required',
-            'category_id' => ['required', Rule::exists('categories', 'id')]
-        ]);
-
-        $attributes['user_id'] = auth()->id();
-        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
-
-        Review::create($attributes);
-
-        return redirect('/');
-    }
 }
