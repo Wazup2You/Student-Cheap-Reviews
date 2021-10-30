@@ -5,7 +5,9 @@
         {{ $heading }}
     </h1>
 
+
     <div class="flex">
+        @can('admin')
         <aside class="w-48 flex-shrink-0">
             <h4 class="font-semibold mb-4">Links</h4>
             <ul>
@@ -18,7 +20,7 @@
                 </li>
             </ul>
         </aside>
-
+        @endcan
         <main class="flex-1">
             <x-panel>
                 {{ $slot }}

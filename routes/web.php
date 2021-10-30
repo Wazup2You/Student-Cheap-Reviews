@@ -27,19 +27,20 @@ Route::post('login', [\App\Http\Controllers\SessionsController::class, 'store'])
 
 Route::post('logout', [\App\Http\Controllers\SessionsController::class, 'destroy'])->middleware('auth');
 
-// Admin
+// Users
+Route::post('user/reviews', [\App\Http\Controllers\ReviewController::class, 'store'])->middleware('auth');
+Route::get('user/reviews/create', [\App\Http\Controllers\ReviewController::class, 'create'])->middleware('auth');
 
-Route::middleware('can:admin')->group(function (){
-    Route::resource('admin/reviews', \App\Http\Controllers\AdminReviewController::class)->except('show');
-//    Route::post('admin/reviews', [\App\Http\Controllers\AdminReviewController::class, 'store']);
-//    Route::get('admin/reviews/create', [\App\Http\Controllers\AdminReviewController::class, 'create']);
-//
-//    Route::get('admin/reviews', [\App\Http\Controllers\AdminReviewController::class, 'index']);
-//    Route::get('admin/reviews/{review}/edit', [\App\Http\Controllers\AdminReviewController::class, 'edit']);
-//
-//    Route::patch('admin/reviews/{review}', [\App\Http\Controllers\AdminReviewController::class, 'update']);
-//    Route::delete('admin/reviews/{review}', [\App\Http\Controllers\AdminReviewController::class, 'destroy']);
-});
+
+// Admin
+Route::post('admin/reviews', [\App\Http\Controllers\AdminReviewController::class, 'store'])->middleware('can:admin');
+Route::get('admin/reviews/create', [\App\Http\Controllers\AdminReviewController::class, 'create'])->middleware('can:admin');
+
+Route::get('admin/reviews', [\App\Http\Controllers\AdminReviewController::class, 'index'])->middleware('can:admin');
+Route::get('admin/reviews/{review}/edit', [\App\Http\Controllers\AdminReviewController::class, 'edit'])->middleware('can:admin');
+
+Route::patch('admin/reviews/{review}', [\App\Http\Controllers\AdminReviewController::class, 'update'])->middleware('can:admin');
+Route::delete('admin/reviews/{review}', [\App\Http\Controllers\AdminReviewController::class, 'destroy'])->middleware('can:admin');
 
 //Route::get('admin/status/{id}', [\App\Http\Controllers\ReviewController::class, 'reviewStatus'])->name('reviewStatus');
 

@@ -1,4 +1,5 @@
 @auth
+    @if (Auth::user()->reviews()->count() >= 3)
     <x-panel>
         <form method="POST" action="/reviews/{{ $review->slug }}/comments">
             @csrf
@@ -18,7 +19,7 @@
                                 name="body"
                                 class="w-full text-sm focus:outline-none focus:ring"
                                 rows="5"
-                                placeholder="Share your experienceses here!"
+                                placeholder="Share your experiences here!"
                                 required></textarea>
 
                 @error('body')
@@ -35,4 +36,6 @@
     <p class="font-semibold">
         <a href="/register" class="hover:underline">Register</a> or <a href="/login" class="hover:underline">Log in</a> to leave a comment
     </p>
+    @endif
 @endauth
+

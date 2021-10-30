@@ -27,19 +27,29 @@ class ReviewController extends Controller
         ]);
     }
 
-//    public function reviewStatus($id)
-//    {
-//        $review = Review::find($id);
-//        $reviewStatus = $review->status;
-//
-//        if ($reviewStatus == true) {
-//            $review->status = false;
-//        } else {
-//            $review->status = true;
-//        }
-//
-//        $review->save();
-//
-//        return back()->with('success', 'Toggles On');
-//    }
+    public function create()
+    {
+        return view('user.reviews.create');
+    }
+
+
+    public function store()
+    {
+        $attributes = request()->validate([
+            'title' => 'required',
+            'thumbnail' => 'required|image',
+            'slug' => ['required', Rule::unique('reviews', 'slug')],
+            'excerpt' => 'required',
+            'body' => 'required',
+            'category_id' => ['required', Rule::exists('categories', 'id')]
+        ]);
+
+        $attributes['user_id'] = auth()->id();
+        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+
+        Review::create($attributes);
+
+        return redirect('/');
+    }
+
 }
