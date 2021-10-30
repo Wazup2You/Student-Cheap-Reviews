@@ -34,7 +34,7 @@
     </x-panel>
 @else
     <p class="font-semibold">
-        <a href="/register" class="hover:underline">Register</a> or <a href="/login" class="hover:underline">Log in</a> to leave a comment
+        <a href="/user/reviews/create" class="hover:underline">Make atleast 3 reviews</a> to leave a comment
     </p>
     @endif
 @endauth
