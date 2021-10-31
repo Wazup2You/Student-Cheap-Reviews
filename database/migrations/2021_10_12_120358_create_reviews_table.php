@@ -23,6 +23,7 @@ class CreateReviewsTable extends Migration
             $table->string('thumbnail')->nullable();
             $table->text('excerpt');
             $table->text('body');
+            $table->tinyInteger('status')->default(value('1'));
             $table->timestamps();
             $table->timestamp('published_at')->nullable();
         });

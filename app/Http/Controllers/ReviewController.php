@@ -52,4 +52,19 @@ class ReviewController extends Controller
         return redirect('/');
     }
 
+    public function reviewStatus(Request $request, $id){
+        $review = Review::find($id);
+        $reviewStatus = $review->status;
+
+        if ($reviewStatus == true) {
+            $review->status = false;
+        } else {
+            $review->status = true;
+        }
+
+        $review->save();
+
+        return back();
+
+    }
 }

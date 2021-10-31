@@ -15,6 +15,27 @@
                             <h5 class="font-bold">
                                 <a href="/?author={{ $review->author->username }}">{{ $review->author->name }}</a>
                             </h5>
+                            @can('admin')
+                            <a href="{{route('reviewStatus', ['id' => $review->id]) }}">
+                                <button  type="submit"
+                                         class="bg-blue-500 rounded-full shadow py-2 px-4 text-white text-xs">
+                                    @if($review->status == 1)
+                                        Verified
+                                    @else
+                                    Not verified
+                                        @endif
+                                </button>
+                            </a>
+                            @endcan
+
+
+                                    @if($review->status == 1)
+                                        Verified
+                                    @else
+                                        Not verified
+                                    @endif
+
+{{--                            <x-follow-button :user="$user"></x-follow-button>--}}
                         </div>
                     </div>
                 </div>

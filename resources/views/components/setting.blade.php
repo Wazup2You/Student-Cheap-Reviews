@@ -18,6 +18,10 @@
                 <li>
                     <a href="/admin/reviews/create" class="{{ request()->is('admin/reviews/create') ? 'text-blue-500' : '' }}">New Review</a>
                 </li>
+
+{{--                <li>--}}
+{{--                    <a href="/user/reviews/following" class="{{ request()->is('user/reviews/following') ? 'text-blue-500' : '' }}">Following</a>--}}
+{{--                </li>--}}
             </ul>
         </aside>
         @endcan

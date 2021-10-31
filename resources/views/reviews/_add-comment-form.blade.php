@@ -1,5 +1,6 @@
 @auth
-    @if (Auth::user()->reviews()->count() >= 3)
+        @if (Auth::user()->reviews()->count() >= 3)
+
     <x-panel>
         <form method="POST" action="/reviews/{{ $review->slug }}/comments">
             @csrf

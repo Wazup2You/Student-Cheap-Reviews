@@ -27,6 +27,7 @@
                     @endcan
 
                     <x-dropdown-item href="/user/reviews/create" :active="request()->is('user/reviews/create')">New Review</x-dropdown-item>
+{{--                    <x-dropdown-item href="/user/reviews/following" :active="request()->is('user/reviews/following')">Following</x-dropdown-item>--}}
                     <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Log Out</x-dropdown-item>
 
                     <form id="logout-form" method="POST" action="/logout" class="hidden">

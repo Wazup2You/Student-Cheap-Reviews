@@ -31,6 +31,10 @@ Route::post('logout', [\App\Http\Controllers\SessionsController::class, 'destroy
 Route::post('user/reviews', [\App\Http\Controllers\ReviewController::class, 'store'])->middleware('auth');
 Route::get('user/reviews/create', [\App\Http\Controllers\ReviewController::class, 'create'])->middleware('auth');
 
+//Route::post('user/reviews/following/{user:name}', [\App\Http\Controllers\FollowingController::class, 'store'])->middleware('auth');
+
+//Route::get('user/reviews/following', [\App\Http\Controllers\FollowingController::class, 'index'])->middleware('auth');
+
 
 // Admin
 Route::post('admin/reviews', [\App\Http\Controllers\AdminReviewController::class, 'store'])->middleware('can:admin');
@@ -42,7 +46,9 @@ Route::get('admin/reviews/{review}/edit', [\App\Http\Controllers\AdminReviewCont
 Route::patch('admin/reviews/{review}', [\App\Http\Controllers\AdminReviewController::class, 'update'])->middleware('can:admin');
 Route::delete('admin/reviews/{review}', [\App\Http\Controllers\AdminReviewController::class, 'destroy'])->middleware('can:admin');
 
-//Route::get('admin/status/{id}', [\App\Http\Controllers\ReviewController::class, 'reviewStatus'])->name('reviewStatus');
+Route::get('admin/status/{id}', [\App\Http\Controllers\ReviewController::class, 'reviewStatus'])->name('reviewStatus')->middleware('can:admin');
+
+
 
 
 
